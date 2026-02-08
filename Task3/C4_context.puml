@@ -1,0 +1,30 @@
+@startuml C4_Context
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
+
+title Контекст системы "Умный дом" PropDevelopment
+
+Person(owner, "Собственник", "Владелец недвижимости")
+Person(visitor, "Посетитель", "Гость или курьер")
+Person(driver, "Водитель", "Автовладелец с правом въезда")
+
+System(propdevApp, "Мобильное приложение PropDevelopment", "Управление недвижимостью")
+System(smartIntercom, "Интеллектуальный домофон", "Распознавание посетителей")
+System(smartBarrier, "Интеллектуальный шлагбаум", "Распознавание автомобилей")
+
+System_Ext(accessControl, "Система контроля доступа", "Управление правами доступа")
+System_Ext(cameraSystem, "Система видеонаблюдения", "Видеофиксация")
+
+Rel(owner, propdevApp, "Управляет доступом")
+Rel(propdevApp, smartIntercom, "Конфигурирование и мониторинг")
+Rel(propdevApp, smartBarrier, "Конфигурирование и мониторинг")
+
+Rel(smartIntercom, visitor, "Распознавание и пропуск")
+Rel(smartBarrier, driver, "Распознавание и пропуск")
+
+Rel(smartIntercom, accessControl, "Проверка прав")
+Rel(smartBarrier, accessControl, "Проверка прав")
+
+Rel(smartIntercom, cameraSystem, "Видеофиксация")
+Rel(smartBarrier, cameraSystem, "Видеофиксация")
+
+@enduml
